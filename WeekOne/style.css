@@ -1,29 +1,35 @@
-*{
- margin: 0;
+* {
+    margin: 0;
 }
-body{
+
+body {
     background-image: url(background.jpg);
     background-repeat: no-repeat;
     object-fit: fill;
 }
-nav{
+
+/* CSS to for nav bar and items */
+nav {
     color: white;
     height: 80px;
     background-color: black !important;
 }
-.menu{
+
+.menu {
     color: white;
     float: left;
     width: 100px;
     padding: 20px;
     height: 15px;
 }
-.menu>img{
+
+.menu>img {
     background-color: red;
     width: 50px;
     height: 45px;
     border-radius: 15px;
 }
+
 .menu>a {
     display: block;
     margin-bottom: 5px;
@@ -32,19 +38,22 @@ nav{
     position: relative;
     color: white;
 }
+
 .menu>a:after {
     content: '';
     position: absolute;
     top: 5px;
 }
-ul{
+
+ul {
     display: none;
 }
-.menu:hover ul{
+
+.menu:hover ul {
     display: block;
 }
 
-ul li{
+ul li {
     text-align: left;
     width: 150px;
     height: 25px;
@@ -54,17 +63,21 @@ ul li{
     color: white;
     background-color: black;
 }
-ul li:hover{
+
+ul li:hover {
     background-color: white;
     color: black;
     cursor: pointer;
 }
-header{
+
+header {
     height: 50px;
     position: fixed;
     width: 100%;
 }
-.container{
+
+/* Css for sections */
+.container {
     width: 1400px;
     height: 300px;
     border: 1px solid black;
@@ -76,96 +89,116 @@ header{
     background-color: black;
     color: white;
 }
-.one>aside{
+
+.one>aside {
     float: left;
     margin-left: 150px;
     margin-top: 40px;
     padding-right: 50px;
 }
-figure{
+
+figure {
     padding-left: 70px;
 }
-.one>aside>figure>img{
+
+.one>aside>figure>img {
     border-radius: 100px;
     width: 200px;
     height: 180px;
     background-color: black;
 }
-.sectionOne{
+
+.sectionOne {
     height: 100%;
     color: white;
-    background-color:black;
+    background-color: black;
 }
-.sectionOne>h3{
+
+.sectionOne>h3 {
     text-decoration: overline;
     padding-top: 50px;
     margin-left: 100px;
     font-weight: bold !important;
     font-size: xx-large;
 }
-.personalDetails ol{
+
+.personalDetails ol {
     padding-top: 20px;
     list-style-type: none;
 }
-.personalDetails ol li{
+
+.personalDetails ol li {
     padding-top: 5px;
     font-weight: bold;
     font-size: 15px;
 }
-.personalDetails ol li span{
+
+.personalDetails ol li span {
     font-family: sans-serif;
     padding-left: 10px;
 }
-.second{
+
+.second {
     margin-top: 50px;
 }
-.second>aside{
+
+.second>aside {
     float: right;
 }
-.second>aside>img{
+
+.second>aside>img {
     margin-right: 100px;
     height: 300px;
     width: 450px;
 }
-.second>h3,.third>h3{
+
+.second>h3,
+.third>h3 {
     text-decoration: overline;
     margin-left: 40px;
     padding-top: 10px !important;
     font-weight: bold !important;
     font-size: xx-large;
 }
-table{
+
+table {
     height: 220px;
     width: 500px;
     margin-left: 40px;
     margin-top: 20px;
 }
 
-.third{
+.third {
     height: 350px;
     margin-top: 50px;
     margin-bottom: 70px;
 }
 
-form{
+/* CSS for form  */
+form {
     margin-top: 25px;
 }
-form>div{
+
+form>div {
     margin-left: 40px;
     margin-top: 20px;
 }
-form>div>label{
+
+form>div>label {
     margin-right: 15px;
 }
 
-form>div>label textarea{
+form>div>label textarea {
     vertical-align: middle;
 }
-form>button{
+
+form>button {
     margin-top: 10px;
     margin-left: 100px;
 }
-footer{
+
+/* CSS for footer */
+footer {
     background-color: black;
     color: white;
     text-align: center;
