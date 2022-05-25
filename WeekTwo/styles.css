@@ -1,0 +1,29 @@
+nav{
+    border: 5px solid blue;
+    display: flex;
+    justify-content: space-evenly;
+}
+nav h1{
+    font-weight: bolder;
+    font-size: xx-large;
+}
+nav button{
+    background-color: rgb(12, 12, 65);
+    color: white;
+    font-size: large;
+    border: none;
+    border-radius: 20px;
+    margin-top: 15px;
+    width: 150px;
+    height: 55px;
+}
+nav button:hover{
+    opacity: 0.5;
+}
+.SectionOne{
+    border: 5px solid red;
+    display: flex; 
+}
+.sectionRight img{
+ width: 50px;
+}
