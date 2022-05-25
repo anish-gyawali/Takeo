@@ -1,29 +1,116 @@
 nav{
-    border: 5px solid blue;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
+
 }
 nav h1{
     font-weight: bolder;
     font-size: xx-large;
+    margin-left: 150px;
 }
-nav button{
-    background-color: rgb(12, 12, 65);
+ button{
+    background-color: #131945;
     color: white;
     font-size: large;
     border: none;
     border-radius: 20px;
     margin-top: 15px;
+    margin-right: 25px;
     width: 150px;
     height: 55px;
 }
-nav button:hover{
+ button:hover{
     opacity: 0.5;
 }
 .SectionOne{
-    border: 5px solid red;
+    padding-left: 150px;
     display: flex; 
+    font-family: sans-serif;
+}
+.SectionOne .sectionLeft h1{
+    font-size: 55px;
+    padding-right: 75px;
+    padding-bottom: 30px;
+
+}
+.SectionOne .sectionLeft p{
+    opacity: 0.5;
+    margin-right: 17vw;
+}
+.sectionLeft button{
+    background-color:#f74780;
+
 }
 .sectionRight img{
- width: 50px;
+    width: 600px;
+    margin-right: 5vw;
+}
+.sectionTwo{
+    display: flex;
+    justify-content: flex-start;
+    align-items: stretch;
+    align-content: stretch;
+    flex-flow: row wrap;
+    padding-top: 10px;
+    padding-bottom: 40px;
+    margin-left: 150px;
+    margin-right: 150px;
+}
+.card1{
+    height: 27vh;
+    margin: 30px;
+    width: 17vw;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 10px 5px 5px rgba(92, 89, 89, 0.174);
+    background-color: #f74780;
+}
+.card1 h1{
+    color: white;
+    font-family: sans-serif;
+    padding: 15px;
+}
+.card{
+    height: 22vh;
+    margin: 30px;
+    width: 18vw;
+    padding: 1vw;
+    padding-bottom: 10vh;
+    border-radius: 10px;
+    box-shadow: 10px 5px 5px rgba(92, 89, 89, 0.174);
+    background-color: white;
+}
+.card h1{
+    font-family: sans-serif;
+    margin-top: -1px;
+}
+.card p{
+    font-family: sans-serif;
+    opacity: 0.5;
+    font-size: 20px;
+}
+.card a{
+    color: #f74780;
+    font-family: sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.card img{
+    margin-top: -40px;
+}
+footer{
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    padding-top: 20px;
+    height: 15vh;
+    background-color: #131945;
+    color: white;
+}
+footer h1{
+    margin-left: 150px;
+}
+footer button{
+    background-color: #c64fd5;
 }
