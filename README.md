@@ -1,2 +1,5 @@
 # Takeo
-Journey for frontend developer with Takeo Bootcamp
+Journey for frontend developer with Takeo Bootcamp:
+
+
+
