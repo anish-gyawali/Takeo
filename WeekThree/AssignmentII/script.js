@@ -64,7 +64,7 @@ const players1Final = [...player1, 'Thiago', 'Coutinho', 'Perisic'];
 console.log(players1Final);
 
 //5. Based on the game.odds object, create one variable for each odd (called 'team1', 'draw' and 'team2')
-const {team1, x:draw, team2} = game.odds;
+const {team1, draw, team2} = game.odds;
 console.log(team1, draw, team2);
 
 //6. Write a function ('printGoals') that receives an arbitrary number of player names (not an array) 
