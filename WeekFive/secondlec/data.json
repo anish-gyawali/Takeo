@@ -1,0 +1,24 @@
+{
+  "books": [
+    {
+      "title": "pyaroTech",
+      "writer": "anish",
+      "publisher": "anish",
+      "isbn": "123456",
+      "subject": "2",
+      "numPages": "5",
+      "availability": "Yes",
+      "id": 1
+    },
+    {
+      "title": "Pahelphur",
+      "writer": "jyesh poudel",
+      "publisher": "Nepali",
+      "isbn": "123456",
+      "subject": "2",
+      "numPages": "423",
+      "availability": "Yes",
+      "id": 2
+    }
+  ]
+}
