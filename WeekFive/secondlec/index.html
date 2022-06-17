@@ -12,6 +12,7 @@
   <body onload="getBookData()">
       <table class="table mx-5 my-5">
         <thead>
+          <th>Book Id</th>
           <th>Title</th>
           <th>Writer</th>
           <th>Publisher</th>
@@ -19,8 +20,11 @@
           <th>Subject</th>
           <th>Number of page</th>
           <th>Availability</th>
+          <th>Edit Action</th>
+          <th>Delete Action</th>
         </thead>
-        <tbody id="tbody"></tbody>
+        <tbody id="tbody">
+        </tbody>
       </table>
       <div class="d-flex justify-content-start mt-5">
         <button class="btn btn-outline-primary" onclick="routeUrl('/book.html')">Add Book</button>
