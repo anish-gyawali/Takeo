@@ -1,11 +1,13 @@
-import CreateBook, { NamedFunction } from "./components/CreateBook";
+import CreateBook from "./components/CreateBook";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Header from "./components/Header";
 
 function App() {
   return (
     <div>
       React app Component
-      <NamedFunction name={"named function "} />
-      <CreateBook title={"page to create book"} />
+      <Header />
+      <CreateBook />
     </div>
   );
 }
