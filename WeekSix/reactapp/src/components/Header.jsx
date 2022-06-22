@@ -1,29 +1,24 @@
 import React from "react";
-//React has an internal mechanism for props validation called PropTypes.
 import PropTypes from "prop-types";
+import "./Header.css";
 
-function Header({ textColor = "green", text, bgColor = "gray" }) {
+function Header({ textColor, text, bgColor }) {
   return (
     <header>
-      <div style={{ backgroundColor: bgColor }}>
+      <div className="container">
         <h2>{text}</h2>
-        <p style={{ color: textColor }}>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis
-          at dolorum nihil praesentium modi dolor assumenda labore soluta fuga?
-          Non commodi autem consectetur accusantium eaque totam corrupti
-          laborum, ducimus earum.
-        </p>
       </div>
     </header>
   );
 }
 
-// Header.defaultProps = {
-//   textColor: "green",
-//   bgColor: "gray",
-// };
+Header.defaultProps = {
+  textColor: "green",
+  bgColor: "gray",
+};
 
 Header.propTypes = {
   bgColor: PropTypes.string.isRequired,
+  textColor: PropTypes.string.isRequired,
 };
 export default Header;
