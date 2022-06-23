@@ -1,10 +1,11 @@
+import Card from "./shared/Card";
+
 function FeedBackItem({ item }) {
   return (
-    <div>
-      {/* In this component we are getting data that we pass from FeedBackList */}
-      <div>{item.rating}</div>
+    <Card>
+      <div className="num-display">{item.rating}</div>
       <div>{item.text}</div>
-    </div>
+    </Card>
   );
 }
 

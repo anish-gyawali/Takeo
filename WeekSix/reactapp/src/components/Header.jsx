@@ -1,10 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "./Header.css";
+
 
 function Header({ textColor, text, bgColor }) {
+  const headerStyles = {
+    backgroundColor: bgColor,
+    color: textColor,
+  };
+
   return (
-    <header>
+    <header style={headerStyles}>
       <div className="container">
         <h2>{text}</h2>
       </div>
@@ -13,12 +18,14 @@ function Header({ textColor, text, bgColor }) {
 }
 
 Header.defaultProps = {
-  textColor: "green",
-  bgColor: "gray",
+  text: "Feedback UI",
+  bgColor: "rgba(0,0,0,0.4)",
+  textColor: "#ff6a95",
 };
 
 Header.propTypes = {
-  bgColor: PropTypes.string.isRequired,
-  textColor: PropTypes.string.isRequired,
+  text: PropTypes.string,
+  bgColor: PropTypes.string,
+  textColor: PropTypes.string,
 };
 export default Header;
