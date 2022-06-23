@@ -5,7 +5,12 @@ function Select({ label, value, onChange, options }) {
         {label}
       </label>
       <div className="col-sm-3">
-        <select className="form-select" aria-label="Default select example">
+        <select
+          class="form-select"
+          aria-label="Default select example"
+          onChange={onChange}
+          value={value}
+        >
           <option selected>Select {label}</option>
           {options.map((item, index) => {
             const { label, value } = item;
@@ -20,5 +25,4 @@ function Select({ label, value, onChange, options }) {
     </div>
   );
 }
-
 export default Select;

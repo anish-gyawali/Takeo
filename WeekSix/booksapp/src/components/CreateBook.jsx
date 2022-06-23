@@ -1,15 +1,14 @@
 import { useState } from "react";
+import { options } from "../data/subjects";
+import { availabilityOptions } from "../data/availability";
+
+import { postData } from "../api";
+import { POST_BOOK } from "../api/urls";
+
 import Input from "./common/Input";
 import Select from "./common/Select";
-import { options } from "../data/subjects";
+import RadioGroup from "./common/RadioGroup";
 
-// Book Title //input box
-// Book Writer // input box
-// Book Publisher // input box
-// Isbn // input box
-// Subject of the Books //Dropdown
-// Number of pages // input box
-// Availability // Radio box
 function CreateBook() {
   const [title, setTitle] = useState();
   const [writer, setWriter] = useState();
@@ -43,48 +42,74 @@ function CreateBook() {
     setAvailability(e.target.value);
   };
 
+  const saveData = async () => {
+    const data = {
+      title,
+      writer,
+      subject,
+      isbn,
+      pages,
+      publisher,
+      availability,
+    };
+    console.log(data);
+    postData(POST_BOOK, data).then(() => {
+      alert("Books saved successfully");
+    });
+  };
   return (
     <div className="container my-5">
-      <Input label={"Book Title"} placeholder={"Book Title"} value={title} />
-      <Input label={"Book Writer"} placeholder={"Book writer"} value={writer} />
+      <Input
+        label={"Book Title"}
+        placeholder={"Book Title"}
+        value={title}
+        onChange={handleTitle}
+      />
+      <Input
+        label={"Book Writer"}
+        placeholder={"Book writer"}
+        value={writer}
+        onChange={handleWriter}
+      />
       <Input
         label={"Book publisher"}
         placeholder={"Book Publisher"}
         value={publisher}
+        onChange={handlePublisher}
       />
-      <Input label={"ISBN Number"} placeholder={"ISBN Number"} value={isbn} />
+      <Input
+        label={"ISBN Number"}
+        placeholder={"ISBN Number"}
+        value={isbn}
+        onChange={handleIsbn}
+      />
 
-      <Select label="Subject" value={subject} options={options} />
-      <div className="mb-3 row">
-        <label for="inputPassword" className="col-sm-2 col-form-label">
-          Availability
-        </label>
-        <div className="col-md-3">
-          <div className="form-check col-sm-2">
-            <input
-              className="form-check-input"
-              type="radio"
-              name="availability"
-              value="Yes"
-            />
-            <label className="form-check-label" for="availability1">
-              Yes
-            </label>
-          </div>
-          <div className="form-check col-sm-2">
-            <input
-              className="form-check-input"
-              type="radio"
-              name="availability"
-              value="No"
-            />
-            <label className="form-check-label" for="availability2">
-              No
-            </label>
-          </div>
+      <Select
+        label="Subject"
+        value={subject}
+        options={options}
+        onChange={handleSubject}
+      />
+      <RadioGroup
+        label="Availability"
+        value={availability}
+        options={availabilityOptions}
+        onClick={handleAvailability}
+      />
+      <Input
+        label={"No of pages"}
+        placeholder={"No of pages"}
+        value={pages}
+        onChange={handlePages}
+      />
+
+      <div class="mb-3 row">
+        <div class="col-md-3 offset-md-2">
+          <button class="btn btn-primary" onClick={saveData}>
+            Save Book
+          </button>
         </div>
       </div>
-      <Input label={"No of pages"} placeholder={"No of pages"} value={pages} />
     </div>
   );
 }

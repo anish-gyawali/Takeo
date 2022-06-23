@@ -8,9 +8,9 @@ function Input({ label, value, onChange, placeholder }) {
         <input
           type="text"
           className="form-control"
-          id="title"
           placeholder={placeholder}
           value={value}
+          onChange={onChange}
         />
       </div>
     </div>
