@@ -11,3 +11,9 @@ export const postData = async (url, data) => {
   });
   return res;
 };
+
+export const getData = async (url) => {
+  const res = await fetch(`${BACKEND_DOMAIN}${url}`);
+  const data = await res.json();
+  return data;
+};

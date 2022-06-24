@@ -9,7 +9,7 @@ import Input from "./common/Input";
 import Select from "./common/Select";
 import RadioGroup from "./common/RadioGroup";
 
-function CreateBook() {
+function CreateBook({ showBooks }) {
   const [title, setTitle] = useState();
   const [writer, setWriter] = useState();
   const [publisher, setPublisher] = useState();
@@ -58,59 +58,66 @@ function CreateBook() {
     });
   };
   return (
-    <div className="container my-5">
-      <Input
-        label={"Book Title"}
-        placeholder={"Book Title"}
-        value={title}
-        onChange={handleTitle}
-      />
-      <Input
-        label={"Book Writer"}
-        placeholder={"Book writer"}
-        value={writer}
-        onChange={handleWriter}
-      />
-      <Input
-        label={"Book publisher"}
-        placeholder={"Book Publisher"}
-        value={publisher}
-        onChange={handlePublisher}
-      />
-      <Input
-        label={"ISBN Number"}
-        placeholder={"ISBN Number"}
-        value={isbn}
-        onChange={handleIsbn}
-      />
+    <>
+      <div className="d-flex justify-content-center mt-5">
+        <button className="btn btn-primary" onClick={showBooks}>
+          Show Books
+        </button>
+      </div>
+      <div className="container my-5">
+        <Input
+          label={"Book Title"}
+          placeholder={"Book Title"}
+          value={title}
+          onChange={handleTitle}
+        />
+        <Input
+          label={"Book Writer"}
+          placeholder={"Book writer"}
+          value={writer}
+          onChange={handleWriter}
+        />
+        <Input
+          label={"Book publisher"}
+          placeholder={"Book Publisher"}
+          value={publisher}
+          onChange={handlePublisher}
+        />
+        <Input
+          label={"ISBN Number"}
+          placeholder={"ISBN Number"}
+          value={isbn}
+          onChange={handleIsbn}
+        />
 
-      <Select
-        label="Subject"
-        value={subject}
-        options={options}
-        onChange={handleSubject}
-      />
-      <RadioGroup
-        label="Availability"
-        value={availability}
-        options={availabilityOptions}
-        onClick={handleAvailability}
-      />
-      <Input
-        label={"No of pages"}
-        placeholder={"No of pages"}
-        value={pages}
-        onChange={handlePages}
-      />
+        <Select
+          label="Subject"
+          value={subject}
+          options={options}
+          onChange={handleSubject}
+        />
+        <RadioGroup
+          label="Availability"
+          value={availability}
+          options={availabilityOptions}
+          onClick={handleAvailability}
+        />
+        <Input
+          label={"No of pages"}
+          placeholder={"No of pages"}
+          value={pages}
+          onChange={handlePages}
+        />
 
-      <div class="mb-3 row">
-        <div class="col-md-3 offset-md-2">
-          <button class="btn btn-primary" onClick={saveData}>
-            Save Book
-          </button>
+        <div class="mb-3 row">
+          <div class="col-md-3 offset-md-2">
+            <button class="btn btn-primary" onClick={saveData}>
+              Save Book
+            </button>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 export default CreateBook;
