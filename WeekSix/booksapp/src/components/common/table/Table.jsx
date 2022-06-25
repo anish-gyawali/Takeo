@@ -3,7 +3,7 @@ import TableHeader from "./TableHeader";
 
 function Table({ books }) {
   return (
-    <table class="table mx-5 my-5">
+    <table className="table mx-5 my-5">
       <TableHeader />
       <TableBody books={books} />
     </table>

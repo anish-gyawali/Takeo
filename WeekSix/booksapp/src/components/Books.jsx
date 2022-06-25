@@ -13,8 +13,8 @@ function Books({ addBook }) {
 
   return (
     <>
-      <div class="d-flex justify-content-center mt-5">
-        <button class="btn btn-primary" onClick={addBook}>
+      <div className="d-flex justify-content-center mt-5">
+        <button className="btn btn-primary" onClick={addBook}>
           Add Book
         </button>
       </div>

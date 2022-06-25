@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { options } from "../data/subjects";
 import { availabilityOptions } from "../data/availability";
-
 import { postData } from "../api";
 import { POST_BOOK } from "../api/urls";
 
 import Input from "./common/Input";
 import Select from "./common/Select";
 import RadioGroup from "./common/RadioGroup";
+import Button from "./common/Button";
 
 function CreateBook({ showBooks }) {
   const [title, setTitle] = useState();
@@ -59,11 +59,7 @@ function CreateBook({ showBooks }) {
   };
   return (
     <>
-      <div className="d-flex justify-content-center mt-5">
-        <button className="btn btn-primary" onClick={showBooks}>
-          Show Books
-        </button>
-      </div>
+      <Button onCLick={showBooks} label={"Show Books"} />
       <div className="container my-5">
         <Input
           label={"Book Title"}
@@ -109,13 +105,7 @@ function CreateBook({ showBooks }) {
           onChange={handlePages}
         />
 
-        <div class="mb-3 row">
-          <div class="col-md-3 offset-md-2">
-            <button class="btn btn-primary" onClick={saveData}>
-              Save Book
-            </button>
-          </div>
-        </div>
+        <Button onClick={saveData} label="Save Book" />
       </div>
     </>
   );
