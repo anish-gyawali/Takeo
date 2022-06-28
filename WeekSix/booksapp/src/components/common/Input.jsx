@@ -1,3 +1,4 @@
+import React from "react";
 function Input({ label, value, onChange, placeholder }) {
   return (
     <div className="mb-3 row">

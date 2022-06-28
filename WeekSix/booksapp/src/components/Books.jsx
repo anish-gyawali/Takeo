@@ -1,9 +1,11 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { getData } from "../api";
 import { GET_BOOK } from "../api/urls";
+import Button from "./common/Button";
 import Table from "./common/table/Table";
 
-function Books({ addBook }) {
+function Books() {
   const [books, setBooks] = useState([]);
   useEffect(() => {
     getData(GET_BOOK).then((data) => {
@@ -13,11 +15,10 @@ function Books({ addBook }) {
 
   return (
     <>
-      <div className="d-flex justify-content-center mt-5">
-        <button className="btn btn-primary" onClick={addBook}>
-          Add Book
-        </button>
-      </div>
+      <Link to="/add">
+        <Button label={"Add Book"} />
+      </Link>
+
       <Table books={books} />
     </>
   );

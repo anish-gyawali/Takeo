@@ -1,3 +1,4 @@
+import React from "react";
 import TableBody from "./TableBody";
 import TableHeader from "./TableHeader";
 

@@ -7,7 +7,7 @@
       "isbn": "asd123",
       "subject": "5",
       "availability": "yes",
-      "numPages": "1201",
+      "pages": "1201",
       "id": 2
     },
     {
@@ -16,8 +16,8 @@
       "publisher": "Pub",
       "isbn": "we23",
       "subject": "3",
-      "availability": "notConfirmed",
-      "numPages": "1231",
+      "availability": "no",
+      "pages": "1231",
       "id": 3
     },
     {
@@ -26,8 +26,8 @@
       "publisher": "Pub",
       "isbn": "we23",
       "subject": "3",
-      "availability": "notConfirmed",
-      "numPages": "1231",
+      "availability": "yes",
+      "pages": "1231",
       "id": 5
     },
     {
@@ -36,8 +36,8 @@
       "publisher": "Pub",
       "isbn": "we23",
       "subject": "3",
-      "availability": "notConfirmed",
-      "numPages": "1231",
+      "availability": "yes",
+      "pages": "1231",
       "id": 6
     },
     {
@@ -46,8 +46,8 @@
       "publisher": "Pub",
       "isbn": "we23",
       "subject": "3",
-      "availability": "notConfirmed",
-      "numPages": "1231",
+      "availability": "yes",
+      "pages": "1231",
       "id": 7
     },
     {

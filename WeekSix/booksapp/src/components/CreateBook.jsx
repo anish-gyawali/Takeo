@@ -1,15 +1,18 @@
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+
 import { options } from "../data/subjects";
 import { availabilityOptions } from "../data/availability";
-import { postData } from "../api";
-import { POST_BOOK } from "../api/urls";
+
+import { postData, getData } from "../api";
+import { GET_BOOK_BY_ID, POST_BOOK } from "../api/urls";
 
 import Input from "./common/Input";
 import Select from "./common/Select";
 import RadioGroup from "./common/RadioGroup";
 import Button from "./common/Button";
 
-function CreateBook({ showBooks }) {
+function CreateBook() {
   const [title, setTitle] = useState();
   const [writer, setWriter] = useState();
   const [publisher, setPublisher] = useState();
@@ -17,6 +20,32 @@ function CreateBook({ showBooks }) {
   const [subject, setSubject] = useState();
   const [pages, setPages] = useState();
   const [availability, setAvailability] = useState(false);
+  const { id } = useParams();
+
+  useEffect(() => {
+    if (id) {
+      let getBookUrl = GET_BOOK_BY_ID.replace("{id}", id);
+      getData(getBookUrl).then((data) => {
+        console.log(data);
+        const {
+          title,
+          writer,
+          publisher,
+          isbn,
+          subject,
+          pages,
+          availability,
+        } = data;
+        setTitle(title);
+        setWriter(writer);
+        setPublisher(publisher);
+        setIsbn(isbn);
+        setSubject(subject);
+        setPages(pages);
+        setAvailability(availability);
+      });
+    }
+  }, [id]);
 
   const handleTitle = (e) => {
     setTitle(e.target.value);
@@ -52,14 +81,15 @@ function CreateBook({ showBooks }) {
       publisher,
       availability,
     };
-    console.log(data);
     postData(POST_BOOK, data).then(() => {
       alert("Books saved successfully");
     });
   };
   return (
     <>
-      <Button onCLick={showBooks} label={"Show Books"} />
+      <Link to="/books">
+        <Button label={"Show Books"} />
+      </Link>
       <div className="container my-5">
         <Input
           label={"Book Title"}

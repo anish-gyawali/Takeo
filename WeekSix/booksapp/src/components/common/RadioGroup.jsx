@@ -1,6 +1,6 @@
 import React from "react";
 
-function RadioGroup({ label, value, onClick, options }) {
+function RadioGroup({ label, value: inputValue, onClick, options }) {
   return (
     <div className="mb-3 row">
       <label htmlFor="availability" className="col-sm-2 col-form-label">
@@ -16,6 +16,7 @@ function RadioGroup({ label, value, onClick, options }) {
               name="availability"
               value={value}
               onClick={onClick}
+              checked={inputValue === value}
             />
             <label className="form-check-label" htmlFor="availability1">
               {label}

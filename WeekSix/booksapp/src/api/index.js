@@ -17,3 +17,9 @@ export const getData = async (url) => {
   const data = await res.json();
   return data;
 };
+
+export const deleteData = async (url, id) => {
+  fetch(`${BACKEND_DOMAIN}${url}${id}`, {
+    method: "DELETE",
+  });
+};
