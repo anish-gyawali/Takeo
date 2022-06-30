@@ -2,6 +2,9 @@ import React from "react";
 import CreateBook from "./components/CreateBook";
 import Books from "./components/Books";
 import { Routes, Route } from "react-router-dom";
+import Error from "./components/Error";
+import LoginComponent from "./components/login/LoginComponent";
+import UserContextProvider from "./components/common/context/UserContext";
 // import { useState } from "react";
 // import Header from "./components/Header";
 
@@ -22,14 +25,16 @@ function App() {
     //   {!showbooksFlag && <CreateBook showBooks={showBooks} />}
     //   {showbooksFlag && <Books addBook={addBook} />}
     // </div>
-
-    <Routes>
-      <Route path="/" element={<CreateBook />} />
-      <Route path="/add" element={<CreateBook />} />
-      <Route path="/books" element={<Books />} />
-      <Route path="/add/:id" element={<CreateBook />} />
-      <Route />
-    </Routes>
+    <UserContextProvider>
+      <Routes>
+        <Route path="/" element={<CreateBook />} />
+        <Route exact path="/add" element={<CreateBook />} />
+        <Route path="/books" element={<Books />} />
+        <Route path="/add/:id" element={<CreateBook />} />
+        <Route path="/login" element={<LoginComponent />} />
+        <Route path="#" element={<Error />} />
+      </Routes>
+    </UserContextProvider>
   );
 }
 

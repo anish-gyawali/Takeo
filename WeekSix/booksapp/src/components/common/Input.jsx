@@ -1,5 +1,5 @@
 import React from "react";
-function Input({ label, value, onChange, placeholder }) {
+function Input({ label, value, onChange, placeholder, type }) {
   return (
     <div className="mb-3 row">
       <label htmlFor="title" className="col-sm-2 col-form-label">
@@ -7,7 +7,7 @@ function Input({ label, value, onChange, placeholder }) {
       </label>
       <div className="col-sm-3">
         <input
-          type="text"
+          type={type}
           className="form-control"
           placeholder={placeholder}
           value={value}

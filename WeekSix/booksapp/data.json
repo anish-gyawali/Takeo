@@ -59,6 +59,26 @@
       "publisher": "Nepalaye",
       "availability": "yes",
       "id": 8
+    },
+    {
+      "title": "1Fundamentals",
+      "writer": "1HC Verma",
+      "subject": "5",
+      "isbn": "asd123",
+      "pages": "1202",
+      "publisher": "1Publisher",
+      "availability": "yes",
+      "id": 9
+    },
+    {
+      "title": "new one",
+      "writer": "writer ",
+      "subject": "1",
+      "isbn": "123",
+      "pages": "222",
+      "publisher": "book",
+      "availability": "yes",
+      "id": 10
     }
   ]
 }

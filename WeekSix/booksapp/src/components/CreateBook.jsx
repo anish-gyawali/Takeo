@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import { options } from "../data/subjects";
 import { availabilityOptions } from "../data/availability";
@@ -21,6 +21,7 @@ function CreateBook() {
   const [pages, setPages] = useState();
   const [availability, setAvailability] = useState(false);
   const { id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (id) {
@@ -87,29 +88,44 @@ function CreateBook() {
   };
   return (
     <>
-      <Link to="/books">
-        <Button label={"Show Books"} />
-      </Link>
+      <div style={{ display: "flex", margin: "3rem" }}>
+        <Button
+          label={"Books"}
+          onClick={() => {
+            navigate("/books");
+          }}
+        />
+        <Button
+          label={"Login"}
+          onClick={() => {
+            navigate("/login");
+          }}
+        />
+      </div>
       <div className="container my-5">
         <Input
+          type={"text"}
           label={"Book Title"}
           placeholder={"Book Title"}
           value={title}
           onChange={handleTitle}
         />
         <Input
+          type={"text"}
           label={"Book Writer"}
           placeholder={"Book writer"}
           value={writer}
           onChange={handleWriter}
         />
         <Input
+          type={"text"}
           label={"Book publisher"}
           placeholder={"Book Publisher"}
           value={publisher}
           onChange={handlePublisher}
         />
         <Input
+          type={"text"}
           label={"ISBN Number"}
           placeholder={"ISBN Number"}
           value={isbn}
@@ -129,6 +145,7 @@ function CreateBook() {
           onClick={handleAvailability}
         />
         <Input
+          type={"text"}
           label={"No of pages"}
           placeholder={"No of pages"}
           value={pages}
