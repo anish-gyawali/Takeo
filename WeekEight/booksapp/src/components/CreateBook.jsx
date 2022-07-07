@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, Navigate, useParams, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { showBooks } from "../actions/actions";
 import Input from "./common/Input";
 import Select from "./common/Select";
 import RadioInput from "./common/RadioInput";
@@ -8,7 +10,7 @@ import { availibilityOptions } from "../data/availability";
 import { postData, getData } from "../api";
 import { POST_BOOK, GET_BOOK_BY_ID } from "../api/urls";
 
-function CreateBook({ showBooks }) {
+function CreateBook() {
   const [title, setTitle] = useState();
   const [author, setAuthor] = useState();
   const [publisher, setPublisher] = useState();
@@ -17,9 +19,14 @@ function CreateBook({ showBooks }) {
   const [availability, setAvailability] = useState();
   const [numPages, setNumPages] = useState();
   const { id } = useParams();
+
+  //useSelector helps to know the state
+  const showBookValue = useSelector((state) => state.showBooks);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(showBooks(false));
     if (id) {
       let getBookUrl = GET_BOOK_BY_ID.replace("{id}", id);
       getData(getBookUrl).then((data) => {
