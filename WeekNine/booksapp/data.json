@@ -1,0 +1,92 @@
+{
+  "books": [
+    {
+      "title": "1Fundamentals1111",
+      "author": "1HC Verma",
+      "subject": "5",
+      "isbn": "asd123",
+      "numPages": "1201",
+      "publisher": "1Publisher",
+      "availability": "yes",
+      "id": 2
+    },
+    {
+      "title": "Title",
+      "author": "Wroter",
+      "publisher": "Pub",
+      "isbn": "we23",
+      "subject": "3",
+      "availability": "notConfirmed",
+      "numPages": "1231",
+      "id": 3
+    },
+    {
+      "title": "Title",
+      "author": "Wroter",
+      "publisher": "Pub",
+      "isbn": "we23",
+      "subject": "3",
+      "availability": "notConfirmed",
+      "numPages": "1231",
+      "id": 5
+    },
+    {
+      "title": "Title",
+      "author": "Wroter",
+      "publisher": "Pub",
+      "isbn": "we23",
+      "subject": "3",
+      "availability": "notConfirmed",
+      "numPages": "1231",
+      "id": 6
+    },
+    {
+      "title": "Title111",
+      "author": "Wroter",
+      "subject": "3",
+      "isbn": "we23",
+      "numPages": "1231",
+      "publisher": "Pub",
+      "availability": "notConfirmed",
+      "id": 7
+    },
+    {
+      "title": "jkjklj",
+      "author": "kljkljkj",
+      "isbn": "jjkljkljlk",
+      "numPages": "2222",
+      "publisher": "kljkljkl",
+      "availability": "no",
+      "id": 8
+    },
+    {
+      "title": "jhkkhk",
+      "author": "hhjkk",
+      "isbn": "jkjkjkhkj",
+      "numPages": "1111",
+      "publisher": "hjjkjk",
+      "availability": "no",
+      "id": 9
+    },
+    {
+      "title": "F1",
+      "author": "A1",
+      "subject": "5",
+      "isbn": "ASBN1",
+      "numPages": "111",
+      "publisher": "P1",
+      "availability": "notConfirmed",
+      "id": 10
+    },
+    {
+      "title": "Title",
+      "author": "Wroter",
+      "subject": "3",
+      "isbn": "we23",
+      "numPages": "1231",
+      "publisher": "Pub",
+      "availability": "notConfirmed",
+      "id": 11
+    }
+  ]
+}
