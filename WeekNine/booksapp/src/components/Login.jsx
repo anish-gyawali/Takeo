@@ -1,11 +1,14 @@
 import { useState, useContext } from "react";
 import { UserContext } from "../components/context/UserContext";
+import { useDispatch } from "react-redux";
 import Input from "./common/Input";
+import { userApiAction } from "../actions/userApiActions";
 
 const Login = () => {
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
   const [disabledLoginBtn, setDisabledLoginBtn] = useState(true);
+  const dispatch = useDispatch();
 
   const { login } = useContext(UserContext);
 
@@ -28,7 +31,8 @@ const Login = () => {
   };
 
   const doLogin = () => {
-    login(username, password);
+    //login(username, password);
+    dispatch(userApiAction());
   };
 
   return (

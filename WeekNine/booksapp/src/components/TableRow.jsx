@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function TableRow({ book }) {
+  const user = useSelector((state) => state.user);
+  console.log(user, "data through redux ");
   return (
     <tr>
       <td>{book.id}</td>
