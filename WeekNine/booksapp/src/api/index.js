@@ -12,7 +12,8 @@ export const postData = async (url, data, id) => {
       "Content-Type": "application/json",
     },
   });
-  return resp;
+  const resdata = await resp.json();
+  return resdata;
 };
 export const getData = async (url) => {
   const resp = await fetch(`${BACKEND_DOMAIN}${url}`);

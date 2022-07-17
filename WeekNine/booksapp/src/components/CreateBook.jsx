@@ -9,6 +9,8 @@ import { options } from "../data/subjects";
 import { availibilityOptions } from "../data/availability";
 import { postData, getData } from "../api";
 import { POST_BOOK, GET_BOOK_BY_ID } from "../api/urls";
+import { postBooksApiAction } from "../actions/postBooksApiActions";
+import { editBooksApiAction } from "../actions/editBooksApiAction";
 
 function CreateBook() {
   const [title, setTitle] = useState();
@@ -22,33 +24,59 @@ function CreateBook() {
 
   //useSelector helps to know the state
   const showBookValue = useSelector((state) => state.showBooks);
+  const dataSuccess = useSelector((state) => state.postBook);
+  const editDataSuccess = useSelector((state) => state.editBook);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(showBooks(true));
+    dispatch(showBooks(false));
+  }, []);
+
+  useEffect(() => {
+    // console.log(dataSuccess,"data success");
+    if (dataSuccess.id) {
+      alert("Book saved successfully");
+    }
+  }, [dataSuccess]);
+
+  useEffect(() => {
     if (id) {
-      let getBookUrl = GET_BOOK_BY_ID.replace("{id}", id);
-      getData(getBookUrl).then((data) => {
-        const {
-          title,
-          author,
-          publisher,
-          isbn,
-          subject,
-          availability,
-          numPages,
-        } = data;
-        setAuthor(author);
-        setIsbn(isbn);
-        setNumPages(numPages);
-        setTitle(title);
-        setPublisher(publisher);
-        setSubject(subject);
-        setAvailability(availability);
-      });
+      dispatch(editBooksApiAction(id));
+      // let getBookUrl = GET_BOOK_BY_ID.replace("{id}", id);
+      // getData(getBookUrl).then((data) => {
+      //   const {
+      //     title,
+      //     author,
+      //     publisher,
+      //     isbn,
+      //     subject,
+      //     availability,
+      //     numPages,
+      //   } = data;
+      //   setAuthor(author);
+      //   setIsbn(isbn);
+      //   setNumPages(numPages);
+      //   setTitle(title);
+      //   setPublisher(publisher);
+      //   setSubject(subject);
+      //   setAvailability(availability);
+      // });
     }
   }, [id]);
+  useEffect(() => {
+    console.log(editDataSuccess, "inside edit success");
+    const { title, author, publisher, isbn, subject, availability, numPages } =
+      editDataSuccess;
+    setAuthor(author);
+    setIsbn(isbn);
+    setNumPages(numPages);
+    setTitle(title);
+    setPublisher(publisher);
+    setSubject(subject);
+    setAvailability(availability);
+  }, [editDataSuccess]);
 
   const handleAuthor = (e) => {
     setAuthor(e.target.value);
@@ -81,9 +109,10 @@ function CreateBook() {
       publisher,
       availability,
     };
-    postData(POST_BOOK, data, id).then(() => {
-      alert("Books saved successfully");
-    });
+    // postData(POST_BOOK, data, id).then(() => {
+    //   alert("Books saved successfully");
+    // });
+    dispatch(postBooksApiAction(data, id));
   };
   return (
     <div className="container my-5">
