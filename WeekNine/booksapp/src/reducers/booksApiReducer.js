@@ -1,11 +1,11 @@
 import * as types from "../actions/types";
-export default function userApiReducer(state = {}, action) {
+export default function booksApiReducer(state = [], action) {
   switch (action.type) {
-    case types.USER_API_LOADING:
+    case types.BOOKS_API_LOADING:
       return { loading: true };
-    case types.USER_API_SUCCESS:
+    case types.BOOKS_API_SUCCESS:
       return action.data;
-    case types.USER_API_ERROR:
+    case types.BOOKS_API_ERROR:
       return action.data;
     default:
       return state;

@@ -5,17 +5,21 @@ import Table from "./Table";
 import { GET_BOOKS } from "../api/urls";
 import { getData } from "../api";
 import { showBooks } from "../actions/actions";
+import { booksApiAction } from "../actions/booksApiActions";
 
 function Books() {
-  const showBookValue = useSelector((state) => state.showBooks);
   const dispatch = useDispatch();
+  const showBookValue = useSelector((state) => state.showBooks);
+  const books = useSelector((state) => state.books);
 
-  const [data, setData] = useState(null);
+  //const [data, setData] = useState(null);
+
   useEffect(() => {
     dispatch(showBooks(false));
-    getData(GET_BOOKS).then((data) => {
-      setData(data);
-    });
+    dispatch(booksApiAction());
+    // getData(GET_BOOKS).then((data) => {
+    //   setData(data);
+    //});
   }, []);
   return (
     <>
@@ -24,7 +28,7 @@ function Books() {
           <button class="btn btn-primary">Add Book</button>
         </Link>
       </div>
-      <Table books={data} />
+      <Table books={books} />
     </>
   );
 }

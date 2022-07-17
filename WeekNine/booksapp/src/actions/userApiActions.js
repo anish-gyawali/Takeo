@@ -1,16 +1,17 @@
 import * as types from "./types";
 import { getUserData } from "../api";
+//import { USER_API_ERROR, USER_API_LOADING, USER_API_SUCCESS } from "./types";
 
 export function userApiError(error) {
   return { type: types.USER_API_ERROR, data: error };
 }
 
-export function userApiLoading() {
-  return { type: types.USER_API_LOADING };
+export function userApiSuccess(data) {
+  return { type: types.USER_API_SUCCESS, data };
 }
 
-export function userApiSuccess(error) {
-  return { type: types.USER_API_SUCCESS, data };
+export function userApiLoading() {
+  return { type: types.USER_API_LOADING };
 }
 
 export function userApiAction() {
@@ -18,8 +19,7 @@ export function userApiAction() {
     dispatch(userApiLoading());
     getUserData()
       .then((data) => {
-        console.log(data);
-        setToken(data?.login?.uuid);
+        console.log(data, "Diapatch action");
         localStorage.setItem("token", data?.login?.uuid);
         dispatch(userApiSuccess(data));
       })

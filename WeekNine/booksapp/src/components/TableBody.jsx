@@ -2,9 +2,8 @@ import TableRow from "./TableRow";
 function TableBody({ books }) {
   return (
     <>
-      {books?.map((book) => (
-        <TableRow key={book.id} book={book} />
-      ))}
+      {books?.length > 0 &&
+        books?.map((book) => <TableRow key={book.id} book={book} />)}
     </>
   );
 }
