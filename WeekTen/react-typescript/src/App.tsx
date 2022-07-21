@@ -1,11 +1,16 @@
 import { useEffect, useState } from 'react';
 import { questions } from './questions';
 
-type QuestionProps = {
+// type QuestionProps = {
+//   question: string;
+//   answer: string;
+// };
+
+interface QuestionProps {
   question: string;
   answer: string;
 };
-
+  
 const Question = ({ question, answer }: QuestionProps) => {
   const [toggle,setToggle]=useState<boolean|null>(null)
 
