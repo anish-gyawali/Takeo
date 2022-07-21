@@ -1,46 +1,53 @@
-import { useEffect, useState } from 'react';
-import { questions } from './questions';
+import { useReducer } from "react";
 
-// type QuestionProps = {
-//   question: string;
-//   answer: string;
-// };
-
-interface QuestionProps {
-  question: string;
-  answer: string;
+const initialState = {
+  numberOfPeople: 10,
+  slicesPerPerson: 2,
+  slicePerPie: 0,
+  pizzaNeeded: 0,
 };
-  
-const Question = ({ question, answer }: QuestionProps) => {
-  const [toggle,setToggle]=useState<boolean|null>(null)
 
-  useEffect(() => { 
-    setTimeout(()=>{
-      setToggle(true)
-    },2000)
-  }, [])
-  
+function reducer(state: any, action: any) {
+  return state;
+}
+
+function Calculation({ count }: { count: any }) {
   return (
-    <article className="question">
-      <header>{question}</header>
-      <p className="answer">
-        <span className={`${toggle? 'blurred':''}`}>{answer}</span>
-      </p>
-      <footer>
-        <button onClick={()=>setToggle(!toggle)}>Toggle Answer</button>
-      </footer>
-    </article>
+    <div className="calculation">
+      <p className="caption">Number of pizzas Needed</p>
+      <p className="count">{count}</p>
+    </div>
   );
-};
+}
 
-const App = () => {
+function Calculator({ state }: { state: any }) {
   return (
-    <main>
-      {questions.map((q) => (
-        <Question question={q.question} answer={q.answer} key={q.id} />
-      ))}
-    </main>
+    <div>
+      <form>
+        <label htmlFor="number-of-people">Number of People</label>
+        <input type="text" id="number-of-people" value={state.numberOfPeople} />
+        <label htmlFor="slices-per-person">Slices Per Person</label>
+        <input
+          type="text"
+          id="slices-per-person"
+          value={state.slicesPerPerson}
+        />
+        <label htmlFor="slices-per-pie">Slices Per Pie</label>
+        <input type="text" id="slices-per-pie" value={state.slicePerPie} />
+      </form>
+    </div>
   );
-};
+}
+
+function App() {
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  return (
+    <div>
+      <Calculation count={state.pizzaNeeded} />
+      <Calculator state={state} />
+    </div>
+  );
+}
 
 export default App;
