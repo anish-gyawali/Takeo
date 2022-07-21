@@ -12,6 +12,15 @@ type PizzaData = {
   slicesPerPerson: number;
   slicePerPie: number;
 };
+type PizzaState = PizzaData & { pizzaNeeded: number };
+
+type PizzaAction = {
+  type:
+    | "UPDATE_NUMBER_OF_PEOPLE"
+    | "UPDATE_SLICES_PER_PERSON"
+    | "UPDATE_SLICES_PER_PIE";
+  payload: number;
+};
 
 function calculatePizzasNeeded({
   numberOfPeople,
@@ -25,7 +34,7 @@ function addPizzasNeeded(data: PizzaData) {
   return { ...data, pizzaNeeded: calculatePizzasNeeded(data) };
 }
 
-function reducer(state: any, action: any) {
+function reducer(state: PizzaState, action: PizzaAction) {
   console.log(state);
   console.log(action);
   if (action.type === "UPDATE_NUMBER_OF_PEOPLE") {
