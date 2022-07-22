@@ -1,10 +1,13 @@
-import Login from "./components/common/modules/login";
+import React from "react";
+import Login from "./components/common/modules/login/index.tsx";
+import Header from "./components/layout/Header.tsx";
 
 function App() {
   return (
-    <div>
+    <>
+      <Header />
       <Login />
-    </div>
+    </>
   );
 }
 
