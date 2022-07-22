@@ -1,5 +1,11 @@
+import Login from "./components/common/modules/login";
+
 function App() {
-  return <div>initial setup</div>;
+  return (
+    <div>
+      <Login />
+    </div>
+  );
 }
 
 export default App;
