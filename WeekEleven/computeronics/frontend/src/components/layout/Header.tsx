@@ -10,17 +10,29 @@ import MenuIcon from "@mui/icons-material/Menu";
 import LoginIcon from '@mui/icons-material/Login';
 import MoreIcon from "@mui/icons-material/MoreVert";
 
+import { useSelector } from "react-redux";
+import { Button } from "@mui/material";
+import { AccountCircle } from "@mui/icons-material";
+
 export default function PrimarySearchAppBar() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [anchorLogin, setAnchorLogin] = useState<null | HTMLElement>(null);
   const [
     mobileMoreAnchorEl,
     setMobileMoreAnchorEl,
   ] = useState<null | HTMLElement>(null);
+
+  const userData=useSelector((state:any)=>state?.user)
+
   const isMenuOpen = Boolean(anchorEl);
+  const isLoginMenuOpen = Boolean(anchorLogin);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
   const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
+  };
+  const handleLoginMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorLogin(event.currentTarget);
   };
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
@@ -36,6 +48,7 @@ export default function PrimarySearchAppBar() {
   };
 
   const menuId = "primary-search-account-menu";
+  const menuLoginId = "primary-search-account-menu";
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
@@ -50,6 +63,26 @@ export default function PrimarySearchAppBar() {
         horizontal: "right",
       }}
       open={isMenuOpen}
+      onClose={handleMenuClose}
+    >
+      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+      <MenuItem onClick={handleMenuClose}>Account</MenuItem>
+    </Menu>
+  );
+  const renderLoginMenu = (
+    <Menu
+      anchorEl={anchorLogin}
+      anchorOrigin={{
+        vertical: "top",
+        horizontal: "right",
+      }}
+      id={menuLoginId}
+      keepMounted
+      transformOrigin={{
+        vertical: "top",
+        horizontal: "right",
+      }}
+      open={isLoginMenuOpen}
       onClose={handleMenuClose}
     >
       <MenuItem onClick={handleMenuClose}>Manager</MenuItem>
@@ -112,7 +145,9 @@ export default function PrimarySearchAppBar() {
             Computeronics
           </Typography>
           <Box sx={{ flexGrow: 1 }} />
+          {userData?(
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
+            
             <IconButton
               size="large"
               edge="end"
@@ -122,9 +157,9 @@ export default function PrimarySearchAppBar() {
               onClick={handleProfileMenuOpen}
               color="inherit"
             >
-              <LoginIcon />
+              <AccountCircle />
             </IconButton>
-          </Box>
+          </Box>):(<Button variant='contained' onClick={handleLoginMenuOpen}>Login</Button>)}
           <Box sx={{ display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
@@ -141,6 +176,7 @@ export default function PrimarySearchAppBar() {
       </AppBar>
       {renderMobileMenu}
       {renderMenu}
+      {renderLoginMenu}
     </Box>
   );
 }

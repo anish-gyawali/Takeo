@@ -1,8 +1,8 @@
-import React from "react";
 import { ThemeProvider } from "@emotion/react";
 import theme from "./theme";
-import Login from "./components/common/modules/login";
 import Header from "./components/layout/Header";
+import Login from "./components/modules/login";
+
 function App() {
   return (
     <ThemeProvider theme={theme}>
