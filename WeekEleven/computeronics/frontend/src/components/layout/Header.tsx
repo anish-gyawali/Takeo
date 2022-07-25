@@ -11,12 +11,27 @@ import LoginIcon from '@mui/icons-material/Login';
 import MoreIcon from "@mui/icons-material/MoreVert";
 
 import { useSelector } from "react-redux";
-import { Button } from "@mui/material";
+import { Button, Modal } from "@mui/material";
 import { AccountCircle } from "@mui/icons-material";
+import Login from "../modules/login";
 
-export default function PrimarySearchAppBar() {
+const style = {
+  position: 'absolute' as 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
+
+export default function Header() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [anchorLogin, setAnchorLogin] = useState<null | HTMLElement>(null);
+  const [isModelOpen, setIsModelOpen]=useState<boolean>(false)
+
   const [
     mobileMoreAnchorEl,
     setMobileMoreAnchorEl,
@@ -27,6 +42,7 @@ export default function PrimarySearchAppBar() {
   const isMenuOpen = Boolean(anchorEl);
   const isLoginMenuOpen = Boolean(anchorLogin);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+
 
   const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -47,8 +63,9 @@ export default function PrimarySearchAppBar() {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
+  
   const menuId = "primary-search-account-menu";
-  const menuLoginId = "primary-search-account-menu";
+  
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
@@ -69,6 +86,11 @@ export default function PrimarySearchAppBar() {
       <MenuItem onClick={handleMenuClose}>Account</MenuItem>
     </Menu>
   );
+  const handleCustomerAction=()=>{
+    handleMenuClose();
+  }
+  const menuLoginId = "primary-search-account-menu";
+
   const renderLoginMenu = (
     <Menu
       anchorEl={anchorLogin}
@@ -86,7 +108,7 @@ export default function PrimarySearchAppBar() {
       onClose={handleMenuClose}
     >
       <MenuItem onClick={handleMenuClose}>Manager</MenuItem>
-      <MenuItem onClick={handleMenuClose}>Customer</MenuItem>
+      <MenuItem onClick={handleCustomerAction}>Customer</MenuItem>
     </Menu>
   );
 
@@ -124,6 +146,7 @@ export default function PrimarySearchAppBar() {
   );
 
   return (
+    <>
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
@@ -178,5 +201,16 @@ export default function PrimarySearchAppBar() {
       {renderMenu}
       {renderLoginMenu}
     </Box>
+    <Modal
+    open={true}
+    // onClose={handleClose}
+    aria-labelledby="modal-modal-title"
+    aria-describedby="modal-modal-description"
+  >
+    <Box sx={style}>
+      <Login/>
+    </Box>
+  </Modal>
+  </>
   );
 }

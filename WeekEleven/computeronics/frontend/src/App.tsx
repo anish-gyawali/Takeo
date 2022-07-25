@@ -5,10 +5,12 @@ import Login from "./components/modules/login";
 
 function App() {
   return (
+    <>
     <ThemeProvider theme={theme}>
     <Header />
     <Login />
   </ThemeProvider>
+  </>
   );
 }
 
