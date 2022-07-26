@@ -1,4 +1,8 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
+
+import { Button, Dialog, DialogContent, DialogTitle } from "@mui/material";
+import { AccountCircle } from "@mui/icons-material";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -7,42 +11,24 @@ import Typography from "@mui/material/Typography";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
-import LoginIcon from '@mui/icons-material/Login';
+import LoginIcon from "@mui/icons-material/Login";
 import MoreIcon from "@mui/icons-material/MoreVert";
 
-import { useSelector } from "react-redux";
-import { Button, Modal } from "@mui/material";
-import { AccountCircle } from "@mui/icons-material";
 import Login from "../modules/login";
-
-const style = {
-  position: 'absolute' as 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
-  p: 4,
-};
 
 export default function Header() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [anchorLogin, setAnchorLogin] = useState<null | HTMLElement>(null);
-  const [isModelOpen, setIsModelOpen]=useState<boolean>(false)
+  const [isModelOpen, setIsModelOpen] = useState<boolean>(false);
+  const [isManagerClicked, setIsManagerClicked] = useState<boolean>(false);
+  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
+    useState<null | HTMLElement>(null);
 
-  const [
-    mobileMoreAnchorEl,
-    setMobileMoreAnchorEl,
-  ] = useState<null | HTMLElement>(null);
-
-  const userData=useSelector((state:any)=>state?.user)
+  const userData = useSelector((state: any) => state?.user);
 
   const isMenuOpen = Boolean(anchorEl);
   const isLoginMenuOpen = Boolean(anchorLogin);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
 
   const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -62,10 +48,25 @@ export default function Header() {
   const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
+  const handleDialogClose = () => {
+    setIsModelOpen(false);
+  };
 
-  
+  const handleCustomerAction = () => {
+    setIsModelOpen(true);
+    setIsManagerClicked(false);
+    handleMenuClose();
+  };
+  const handleManagerAction = () => {
+    setIsModelOpen(true);
+    setIsManagerClicked(true);
+    handleMenuClose();
+  };
+
   const menuId = "primary-search-account-menu";
-  
+  const menuLoginId = "primary-search-account-menu";
+  const mobileMenuId = "primary-search-account-menu-mobile";
+
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
@@ -86,10 +87,6 @@ export default function Header() {
       <MenuItem onClick={handleMenuClose}>Account</MenuItem>
     </Menu>
   );
-  const handleCustomerAction=()=>{
-    handleMenuClose();
-  }
-  const menuLoginId = "primary-search-account-menu";
 
   const renderLoginMenu = (
     <Menu
@@ -107,12 +104,11 @@ export default function Header() {
       open={isLoginMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Manager</MenuItem>
+      <MenuItem onClick={handleManagerAction}>Manager</MenuItem>
       <MenuItem onClick={handleCustomerAction}>Customer</MenuItem>
     </Menu>
   );
 
-  const mobileMenuId = "primary-search-account-menu-mobile";
   const renderMobileMenu = (
     <Menu
       anchorEl={mobileMoreAnchorEl}
@@ -129,7 +125,6 @@ export default function Header() {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
           size="large"
@@ -147,70 +142,73 @@ export default function Header() {
 
   return (
     <>
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ display: { xs: "none", sm: "block" } }}
-          >
-            Computeronics
-          </Typography>
-          <Box sx={{ flexGrow: 1 }} />
-          {userData?(
-          <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            
+      <Box sx={{ flexGrow: 1 }}>
+        <AppBar position="static">
+          <Toolbar>
             <IconButton
               size="large"
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
+              edge="start"
               color="inherit"
+              aria-label="open drawer"
+              sx={{ mr: 2 }}
             >
-              <AccountCircle />
+              <MenuIcon />
             </IconButton>
-          </Box>):(<Button variant='contained' onClick={handleLoginMenuOpen}>Login</Button>)}
-          <Box sx={{ display: { xs: "flex", md: "none" } }}>
-            <IconButton
-              size="large"
-              aria-label="show more"
-              aria-controls={mobileMenuId}
-              aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
-              color="inherit"
+            <Typography
+              variant="h6"
+              noWrap
+              component="div"
+              sx={{ display: { xs: "none", sm: "block" } }}
             >
-              <MoreIcon />
-            </IconButton>
-          </Box>
-        </Toolbar>
-      </AppBar>
-      {renderMobileMenu}
-      {renderMenu}
-      {renderLoginMenu}
-    </Box>
-    <Modal
-    open={true}
-    // onClose={handleClose}
-    aria-labelledby="modal-modal-title"
-    aria-describedby="modal-modal-description"
-  >
-    <Box sx={style}>
-      <Login/>
-    </Box>
-  </Modal>
-  </>
+              Computeronics
+            </Typography>
+            <Box sx={{ flexGrow: 1 }} />
+            {userData ? (
+              <Box sx={{ display: { xs: "none", md: "flex" } }}>
+                <IconButton
+                  size="large"
+                  edge="end"
+                  aria-label="account of current user"
+                  aria-controls={menuId}
+                  aria-haspopup="true"
+                  onClick={handleProfileMenuOpen}
+                  color="inherit"
+                >
+                  <AccountCircle />
+                </IconButton>
+              </Box>
+            ) : (
+              <Button variant="contained" onClick={handleLoginMenuOpen}>
+                Login
+              </Button>
+            )}
+            <Box sx={{ display: { xs: "flex", md: "none" } }}>
+              <IconButton
+                size="large"
+                aria-label="show more"
+                aria-controls={mobileMenuId}
+                aria-haspopup="true"
+                onClick={handleMobileMenuOpen}
+                color="inherit"
+              >
+                <MoreIcon />
+              </IconButton>
+            </Box>
+          </Toolbar>
+        </AppBar>
+        {renderMobileMenu}
+        {renderMenu}
+        {renderLoginMenu}
+      </Box>
+      <Dialog open={isModelOpen} onClose={handleDialogClose}>
+        <DialogTitle>Login</DialogTitle>
+        <DialogContent>
+          <Login
+            manager={isManagerClicked}
+            handleDialogClose={handleDialogClose}
+          />
+        </DialogContent>
+      </Dialog>
+    </>
   );
 }
