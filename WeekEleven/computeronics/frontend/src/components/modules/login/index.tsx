@@ -1,5 +1,8 @@
-import { Box, Button, TextField } from "@mui/material";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import {loginApiAction} from "./actions"
+import { Box, Button, TextField } from "@mui/material";
+import { LOGIN } from "../../../api/urls";
 
 const styles = {
   wrapper: {
@@ -29,12 +32,12 @@ interface LoginProps {
 }
 
 interface LoginModel {
-  username: string;
-  password: string;
+  contact: string;
+  password?: string;
 }
 const Login = ({ manager, handleDialogClose }: LoginProps) => {
   const [data, setData] = useState<LoginModel>({} as LoginModel);
-
+  const dispatch=useDispatch();
   const handleInput = (e: any) => {
     const name = e.target.name;
     const value = e.target.value;
@@ -43,18 +46,18 @@ const Login = ({ manager, handleDialogClose }: LoginProps) => {
       [name]: value,
     });
   };
-  const doLogin = () => {
-    console.log(data);
+  const doLogin = async () => {
+    dispatch(await loginApiAction(LOGIN, data))
   };
   return (
     <Box sx={styles.wrapper}>
       <TextField
-        name="username"
+        name="contact"
         required
         id="outlined-required"
-        label="Username"
+        label="Contact"
         sx={styles.input}
-        value={data.username}
+        value={data.contact}
         onChange={handleInput}
       />
       {manager && (

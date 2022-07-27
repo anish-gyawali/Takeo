@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import  React,{useState,useEffect} from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import { Button, Dialog, DialogContent, DialogTitle } from "@mui/material";
 import { AccountCircle } from "@mui/icons-material";
@@ -15,17 +15,17 @@ import LoginIcon from "@mui/icons-material/Login";
 import MoreIcon from "@mui/icons-material/MoreVert";
 
 import Login from "../modules/login";
+import { logoutSuccessAction } from "../modules/login/actions";
 
 export default function Header() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const [anchorLogin, setAnchorLogin] = useState<null | HTMLElement>(null);
-  const [isModelOpen, setIsModelOpen] = useState<boolean>(false);
-  const [isManagerClicked, setIsManagerClicked] = useState<boolean>(false);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
-    useState<null | HTMLElement>(null);
+  const [anchorLogin, setAnchorLogin] =useState<null | HTMLElement>(null);
+  const [isModelOpen, setIsModelOpen] =useState<boolean>(false);
+  const [isManagerClicked, setIsManagerClicked] = React.useState<boolean>(false);
+  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState<null | HTMLElement>(null);
 
-  const userData = useSelector((state: any) => state?.user);
-
+  const userData = useSelector((state: any) => state?.loginData);
+  const dispatch=useDispatch();
   const isMenuOpen = Boolean(anchorEl);
   const isLoginMenuOpen = Boolean(anchorLogin);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -39,10 +39,13 @@ export default function Header() {
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
   };
-
+  const handleLoginMenuClose = () => {
+    setAnchorLogin(null);
+  };
   const handleMenuClose = () => {
     setAnchorEl(null);
     handleMobileMenuClose();
+    handleLoginMenuClose();
   };
 
   const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
@@ -52,17 +55,19 @@ export default function Header() {
     setIsModelOpen(false);
   };
 
-  const handleCustomerAction = () => {
-    setIsModelOpen(true);
-    setIsManagerClicked(false);
-    handleMenuClose();
-  };
-  const handleManagerAction = () => {
-    setIsModelOpen(true);
-    setIsManagerClicked(true);
-    handleMenuClose();
+
+  const doLogout=()=>{
+    localStorage.clear();
+    handleMenuClose()
+    dispatch(logoutSuccessAction())
   };
 
+  useEffect(() => {
+    if(userData?._id){
+      setIsModelOpen(false);
+    }
+  }, [userData]);
+  
   const menuId = "primary-search-account-menu";
   const menuLoginId = "primary-search-account-menu";
   const mobileMenuId = "primary-search-account-menu-mobile";
@@ -85,8 +90,20 @@ export default function Header() {
     >
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       <MenuItem onClick={handleMenuClose}>Account</MenuItem>
+      <MenuItem onClick={doLogout}>Logout</MenuItem>
     </Menu>
   );
+
+  const handleCustomerAction = () => {
+    setIsModelOpen(true);
+    setIsManagerClicked(false);
+    handleMenuClose();
+  };
+  const handleManagerAction = () => {
+    setIsModelOpen(true);
+    setIsManagerClicked(true);
+    handleMenuClose();
+  };
 
   const renderLoginMenu = (
     <Menu
@@ -104,8 +121,8 @@ export default function Header() {
       open={isLoginMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleManagerAction}>Manager</MenuItem>
       <MenuItem onClick={handleCustomerAction}>Customer</MenuItem>
+      <MenuItem onClick={handleManagerAction}>Manager</MenuItem> 
     </Menu>
   );
 
@@ -163,7 +180,7 @@ export default function Header() {
               Computeronics
             </Typography>
             <Box sx={{ flexGrow: 1 }} />
-            {userData ? (
+            {userData?._id ? (
               <Box sx={{ display: { xs: "none", md: "flex" } }}>
                 <IconButton
                   size="large"
