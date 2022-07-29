@@ -1,6 +1,7 @@
 // useReducer: simple Counter
 
 import * as React from "react";
+import Task2 from "./Task2";
 
 function countReducer(state, newState) {
   return newState;
@@ -20,7 +21,12 @@ function Counter({ initialCount = 0, step = 1 }) {
 }
 
 function App() {
-  return <Counter />;
+  return (
+    <>
+      {/* <Counter /> */}
+      <Task2 />
+    </>
+  );
 }
 
 export default App;
