@@ -3,6 +3,7 @@
 import * as React from "react";
 import Task2 from "./Task2";
 import Task3 from "./Task3";
+import Task4 from "./Task4";
 
 function countReducer(state, newState) {
   return newState;
@@ -26,7 +27,8 @@ function App() {
     <>
       {/* <Counter /> */}
       {/* <Task2 /> */}
-      <Task3 />
+      {/* <Task3 /> */}
+      <Task4 />
     </>
   );
 }
