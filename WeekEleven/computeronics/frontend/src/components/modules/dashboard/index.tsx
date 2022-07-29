@@ -3,6 +3,8 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Box, Button, CardActionArea, CardActions } from '@mui/material';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const styles={
   wrapper:{
@@ -25,7 +27,28 @@ const styles={
 }
 const ISSUE_IMAGE="/issue.jpg";
 const ORDER_IMAGE="/order.jpg"
-const Dashboard=()=> {
+
+interface DashboardProps {
+  setIsModelOpen: any;
+  isModelOpen: boolean;
+}
+const Dashboard=({ setIsModelOpen, isModelOpen }: DashboardProps)=> {
+  const userData = useSelector((state: any) => state.loginData);
+  const navigate = useNavigate();
+  const goToOrder = () => {
+    if (userData?._id) {
+      navigate("/order");
+    } else {
+      setIsModelOpen(true);
+    }
+  };
+  const goToTicket = () => {
+    if (userData?._id) {
+      navigate("/ticket");
+    } else {
+      setIsModelOpen(true);
+    }
+  };
   return (
     <Box sx={styles.wrapper}>
     <Card sx={styles.card}>
@@ -44,7 +67,7 @@ const Dashboard=()=> {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button variant='contained' size='large' fullWidth color="primary">
+        <Button variant='contained' size='large' fullWidth color="primary"  onClick={goToTicket}>
           RAISE TICKET
         </Button>
       </CardActions>
@@ -65,7 +88,7 @@ const Dashboard=()=> {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button variant='contained' size='large' fullWidth color="primary">
+        <Button variant='contained' size='large' fullWidth color="primary" onClick={goToOrder}>
           ORDER
         </Button>
       </CardActions>

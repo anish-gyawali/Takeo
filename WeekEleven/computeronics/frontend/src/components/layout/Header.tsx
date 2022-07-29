@@ -17,10 +17,18 @@ import MoreIcon from "@mui/icons-material/MoreVert";
 import Login from "../modules/login";
 import { logoutSuccessAction } from "../modules/login/actions";
 
-export default function Header() {
+
+interface HeaderProps {
+  setIsModelOpen: any;
+  isModelOpen: boolean;
+}
+
+export default function Header({
+  setIsModelOpen,
+  isModelOpen,
+}: HeaderProps) {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [anchorLogin, setAnchorLogin] =useState<null | HTMLElement>(null);
-  const [isModelOpen, setIsModelOpen] =useState<boolean>(false);
   const [isManagerClicked, setIsManagerClicked] = React.useState<boolean>(false);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState<null | HTMLElement>(null);
 
