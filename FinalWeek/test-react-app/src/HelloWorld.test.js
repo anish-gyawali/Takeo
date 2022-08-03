@@ -4,12 +4,15 @@ import HelloWorld from "./HelloWorld";
 
 describe("Testing text of component", () => {
   test("renders 'Hello World'", () => {
+    //Arrange
     render(<HelloWorld />);
     const helloWorldElem = screen.getByText("Hello world", { exact: false });
+    //Assert
     expect(helloWorldElem).toBeInTheDocument();
   });
 
   test("renders 'Testing the component not showing'", () => {
+    //Arrange
     render(<HelloWorld />);
     const NotestingCompElem = screen.getByText(
       "Testing the component not showing",
@@ -17,6 +20,7 @@ describe("Testing text of component", () => {
         exact: true,
       }
     );
+    //Assert
     expect(NotestingCompElem).toBeInTheDocument();
   });
 
