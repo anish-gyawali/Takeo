@@ -1,3 +1,4 @@
+import Async from "./Async";
 import HelloWorld from "./HelloWorld";
 import Input from "./Input";
 
@@ -6,6 +7,7 @@ function App() {
     <div>
       <HelloWorld />
       <Input />
+      <Async />
     </div>
   );
 }
