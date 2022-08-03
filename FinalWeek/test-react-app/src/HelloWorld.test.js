@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import userEvents from "@testing-library/user-event";
 import HelloWorld from "./HelloWorld";
 
@@ -31,24 +31,37 @@ describe("Testing text of component", () => {
 
   test("renders 'Testing the component' when button Clicked", () => {
     render(<HelloWorld />);
-    const showParaBtn = screen.getByRole("button");
+    const showParaBtn = screen.getByRole("button", { name: "Show content" });
     userEvents.click(showParaBtn);
     const testingCompElem = screen.queryByText("Testing the component", {
       exact: true,
     });
-    expect(testingCompElem).toBeInTheDocument();
-  });
-
-  test("renders 'Testing the component not showing' when button Clicked", () => {
-    render(<HelloWorld />);
-    const showParaBtn = screen.getByRole("button");
-    userEvents.click(showParaBtn);
     const NoTestingCompElem = screen.queryByText(
       "Testing the component not showing",
       {
         exact: true,
       }
     );
-    expect(NoTestingCompElem).toBeNull();
+    expect(testingCompElem).toBeInTheDocument();
+    expect(NoTestingCompElem).not.toBeInTheDocument();
+  });
+
+  test("renders 'Testing the component not showing' when button Clicked", () => {
+    render(<HelloWorld />);
+    const showParaBtn = screen.getByRole("button", { name: "Hide content" });
+    // userEvents.click(showParaBtn);
+    fireEvent.click(showParaBtn);
+    const NoTestingCompElem = screen.queryByText(
+      "Testing the component not showing",
+      {
+        exact: true,
+      }
+    );
+    const testingCompElem = screen.queryByText("Testing the component", {
+      exact: true,
+    });
+
+    expect(NoTestingCompElem).toBeInTheDocument();
+    expect(testingCompElem).not.toBeInTheDocument();
   });
 });
